@@ -8,10 +8,19 @@ const app = express();
 
 
 
+
 /*Middlewares*/
 app.use(express.json())
 app.use(logger('dev'));
 
+/*Configure Routes*/
+const router = require('./config/routes.config');
+app.use('/api/v1', router);
+
+/*Handle Errors*/
+app.use((req, res, next) => {
+    next(createError(404, 'Path not found'));
+})
 
 
 
