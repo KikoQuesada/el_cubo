@@ -22,7 +22,14 @@ app.use((req, res, next) => {
     next(createError(404, 'Path not found'));
 })
 
+app.use((error, req, res, next) => {
 
+
+    const data = {}
+    data.message = error.message;
+
+    res.status(error.status || 500).json(data)
+})
 
 const port = Number(process.env.PORT || 3001);
 app.listen(port, () => {

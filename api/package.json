@@ -20,6 +20,8 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "http-errors": "^1.8.0",
+    "moment": "^2.29.1",
+    "mongoose": "^6.0.2",
     "morgan": "^1.10.0"
   }
 }
