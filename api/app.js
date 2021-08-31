@@ -3,6 +3,9 @@ require('dotenv').config();
 const createError = require('http-errors');
 const logger = require('morgan');
 const express = require('express');
+const mongoose = require('mongoose');
+
+/*TODO: Configurar la Base de Datos*/
 
 const app = express();
 
@@ -23,7 +26,9 @@ app.use((req, res, next) => {
 })
 
 app.use((error, req, res, next) => {
-
+    if (error instanceof mongoose.Error.ValidationError) { 
+        error = createError(400, error)
+    }
 
     const data = {}
     data.message = error.message;

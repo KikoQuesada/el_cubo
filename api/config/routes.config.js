@@ -4,8 +4,8 @@ const users = require('../controllers/users.controller');
 
 
 /*USERS ACTIONS*/
-router.get('/users', users.list)
-router.post('/users');
+router.get('/users')
+router.post('/users', users.create);
 router.get('/users/:id');
 router.put('/users/:id');
 router.delete('/users/:id');
