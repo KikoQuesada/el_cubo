@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 
 /*TODO: Configurar la Base de Datos*/
 
+require('./config/db.config');
 const app = express();
 
 
@@ -32,6 +33,11 @@ app.use((error, req, res, next) => {
 
     const data = {}
     data.message = error.message;
+
+    data.errors = error.errors ? Object.keys(error.errors).reduce((errors, key) => {
+        errors[key] = error.errors[key].message;
+        return errors
+    }, {}) : undefined
 
     res.status(error.status || 500).json(data)
 })
